@@ -45,8 +45,6 @@ def _item_to_row(stock_id: int, item_ext: ItemExt) -> List[object]:
         getattr(item_ext.quantity, "common", None) if item_ext.quantity else None
     )
     return [
-        stock_id,
-        item_ext.item.id,
         item_ext.item.code,
         item_ext.item.name,
         item_ext.item.articul,
@@ -96,13 +94,11 @@ def _build_excel_bytes(*, stock_id: int, rows: List[List[object]]) -> bytes:
     ws.title = f"stock_{stock_id}"
 
     headers = [
-        "stock_id",
-        "item_id",
-        "code",
-        "name",
-        "articul",
-        "quantity",
-        "min_quantity",
+        "Код товара",
+        "Наименование",
+        "Артикул",
+        "Остаток",
+        "Минимальный остаток",
     ]
 
     ws.append(headers)
